@@ -9,17 +9,17 @@ import { useEffect } from "react";
 import { auth } from "./firebase";
 
 function App() {
+  // eslint-disable-next-line
   const [{ user }, dispatch] = useStateValue();
+  // eslint-disable-next-line
   useEffect(() => {
     const unsubscribe = auth.onAuthStateChanged((authUser) => {
       if (authUser) {
-        // the user is logged in
         dispatch({
           type: "SET_USER",
           user: authUser,
         });
       } else {
-        // the user is logged out
         dispatch({
           type: "SET_USER",
           user: null,
@@ -28,7 +28,6 @@ function App() {
     });
 
     return () => {
-      // any clean up operations go in here...
       unsubscribe();
     };
   }, []);
@@ -56,7 +55,6 @@ function App() {
               </>
             }
           />
-
           <Route path="*" element={<h1>NOT FOUND!!</h1>} />
         </Routes>
       </div>
